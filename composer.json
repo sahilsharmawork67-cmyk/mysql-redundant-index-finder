@@ -1,0 +1,48 @@
+{
+    "name": "sahilsharma/mysql-redundant-index-finder",
+    "description": "Command-line tool that finds redundant MySQL indexes (duplicates and leftmost prefixes) in CREATE TABLE schema dumps.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "mysql",
+        "index",
+        "schema",
+        "database",
+        "performance",
+        "cli"
+    ],
+    "authors": [
+        {
+            "name": "Sahil Sharma"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-ctype": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "IndexFinder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IndexFinder\\Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "bin/index-finder"
+    ],
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse --memory-limit=512M"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
