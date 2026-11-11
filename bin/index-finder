@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use IndexFinder\Console\Application;
+
+$autoloaders = [
+    __DIR__ . '/../vendor/autoload.php',      // running from a clone of this repository
+    __DIR__ . '/../../../autoload.php',       // installed as a Composer dependency
+];
+
+foreach ($autoloaders as $autoloader) {
+    if (is_file($autoloader)) {
+        require $autoloader;
+        break;
+    }
+}
+
+if (!class_exists(Application::class)) {
+    fwrite(STDERR, "Autoloader not found. Run \"composer install\" first.\n");
+    exit(2);
+}
+
+exit((new Application())->run(array_slice($argv, 1), STDIN, STDOUT, STDERR));
